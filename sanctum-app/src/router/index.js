@@ -8,8 +8,30 @@ import ShowPost from '../components/ShowPost.vue'
 import IndexPost from '../components/IndexPost.vue'
 import MyPosts from '../components/MyPosts.vue'
 const routes = [
-  { path: '/', component: LoginPage, name: 'login' },
-  { path: '/register', component: RegisterPage, name: 'register' },
+  { path: '/', 
+    component: LoginPage, 
+    name: 'login',
+    beforeEnter: (to, from, next) => {
+      // If user is logged in, redirect to home
+      if (localStorage.getItem('token')) {
+        next('/home')
+      } else {
+        next()
+      }
+    } 
+  },
+  { path: '/register', 
+    component: RegisterPage, 
+    name: 'register',
+    beforeEnter: (to, from, next) => {
+      // If user is logged in, redirect to home
+      if (localStorage.getItem('token')) {
+        next('/home')
+      } else {
+        next()
+      }
+    }
+  },
   {
     path: '/home',
     component: IndexPost,

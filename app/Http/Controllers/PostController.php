@@ -101,10 +101,10 @@ class PostController extends Controller
         ], 200);
     }
 
-   public function destroy($id) {
+//    public function destroy($id) {
 
-   }
-   public function edit($id) {
+//    }
+//    public function edit($id) {
     
-   }
+//    }
 }

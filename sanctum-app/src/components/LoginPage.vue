@@ -21,11 +21,12 @@
         <h4>Enter your email and password</h4>
         <form @submit.prevent="loginUser" class="col-12">
           <div class="form-group mt-3">
-            <input type="email" class="form-control" id="email" v-model="email" placeholder="Enter email" required @input="clearErrors">
-            <small class="text-danger" v-if="errors">{{ errors }}</small>
+            <input type="email" class="form-control" id="email" v-model="email" placeholder="Enter email"  @input="clearErrors">
+            <small class="text-danger" v-if="errors?.email">{{ errors.email[0] }}</small>
           </div>
           <div class="form-group mt-3">
-            <input type="password" class="form-control" id="password" v-model="password" placeholder="Password" required @input="clearErrors">
+            <input type="password" class="form-control" id="password" v-model="password" placeholder="Password" @input="clearErrors">
+            <small class="text-danger" v-if="errors?.password">{{ errors.password[0] }}</small>
           </div>
           <button type="submit" class="btn btn-primary mt-3 w-100">Login</button>
         </form>
@@ -66,12 +67,13 @@ export default {
         }
       } catch (error) {
         // Handle login error, show error message to the user
-        this.errors = error.response.data.message;
+        this.errors = error.response.data.errors;
+       
       }
     },
     clearErrors() {
       // Clear error message for the specified field
-      this.errors = null;
+      this.errors = {};
     }
   }
 };
