@@ -83,7 +83,7 @@ class PostController extends Controller
         ], 200);
     }
 
-     /**
+    /**
      * Display user-specific posts.
      */
     public function getUserPosts()
@@ -101,10 +101,18 @@ class PostController extends Controller
         ], 200);
     }
 
-//    public function destroy($id) {
+    public function delete($id)
+    {
+        if ($post = Post::find($id)) {
+            $post->delete();
+            $allPosts = Post::all();
+            return response()->json(['message' => 'Post deleted successfully', 'posts' => $allPosts], 200);
+        }
 
-//    }
-//    public function edit($id) {
-    
-//    }
+        return response()->json(['message' => 'Post not found'], 404);
+    }
+
+    //    public function edit($id) {
+
+    //    }
 }
