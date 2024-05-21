@@ -2,7 +2,7 @@
   <div>
     <nav class="nav-bar">
       <div class="nav-container">
-        <span class="nav-brand">Forum App</span>
+        <router-link class="nav-brand" to="/">ForumApp</router-link>
         <ul class="nav-links">
           <li class="nav-item">
             <router-link class="nav-link" to="/">Login</router-link>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+
     <nav class="nav-bar">
       <div class="nav-container">
         <router-link class="nav-brand" to="/home">NewsFeed</router-link>
@@ -38,7 +38,7 @@
         </tr>
       </tbody>
     </table>
-  </div>
+
 </template>
 
 <script>

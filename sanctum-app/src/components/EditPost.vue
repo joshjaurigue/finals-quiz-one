@@ -1,4 +1,19 @@
 <template>
+    <nav class="nav-bar">
+      <div class="nav-container">
+        <router-link class="nav-brand" to="/home">NewsFeed</router-link>
+        <ul class="nav-links">
+        <li class="nav-item">
+            <router-link class="nav-link" to="/my-posts">My Posts</router-link>
+        </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/logout">Logout</router-link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <br>
+    <br>
     <div class="container">
       <h1>Edit Post</h1>
       <form @submit.prevent="updatePost" class="post-form">
@@ -86,5 +101,54 @@
   .btn-primary:hover {
     background-color: #0056b3;
   }
+  
+.nav-brand {
+  font-size: 1.2em;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.nav-brand:hover {
+  text-decoration: underline;
+}
+.nav-bar {
+  background-color: #4c4d4e; /* Changed to a blue color */
+  padding: 1em 2em;
+  border-bottom: 2px solid #141414;
+  border-top: 2px solid #141414;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1em;
+}
+
+.nav-item {
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
   </style>
   

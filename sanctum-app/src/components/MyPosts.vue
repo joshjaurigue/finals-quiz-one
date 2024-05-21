@@ -1,7 +1,7 @@
 <template>
     <nav class="nav-bar">
       <div class="nav-container">
-        <span class="nav-brand">News Feed</span>
+        <router-link class="nav-brand" to="/home">NewsFeed</router-link>
         <ul class="nav-links">
         <li class="nav-item">
             <router-link class="nav-link" to="/my-posts">My Posts</router-link>
@@ -14,6 +14,7 @@
     </nav>
     <br>
     <br>
+
     <router-link to="/posts/create" class="btn btn-primary">Create New Post</router-link>
     
     <div class="container">
