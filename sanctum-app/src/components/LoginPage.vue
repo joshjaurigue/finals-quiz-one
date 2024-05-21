@@ -3,7 +3,7 @@
     <!-- Navigation Bar -->
     <nav class="nav-bar">
       <div class="nav-container">
-        <span class="nav-brand">ForumApp</span>
+        <router-link class="nav-brand" to="/">ForumApp</router-link>
         <ul class="nav-links">
           <li class="nav-item">
             <router-link class="nav-link" to="/">Login</router-link>
@@ -96,6 +96,8 @@ export default {
 .nav-brand {
   font-size: 1.5em;
   font-weight: bold;
+  color: #131313;
+  text-decoration: none;
 }
 
 .nav-links {
