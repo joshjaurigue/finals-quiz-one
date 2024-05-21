@@ -13,6 +13,8 @@
         </ul>
       </div>
     </nav>
+    <br>
+    <br>
     <router-link to="/posts/create" class="btn btn-primary">Create New Post</router-link>
     <br>
     <br>
@@ -119,14 +121,15 @@ export default {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #4CAF50;
+  background-color: #00aca0;
   color: white;
 }
 
 .nav-bar {
-  background-color: #f8f9fa;
-  padding: 1em;
-  border-bottom: 1px solid #dee2e6;
+  background-color: #4c4d4e; /* Changed to a blue color */
+  padding: 1em 2em;
+  border-bottom: 2px solid #141414;
+  border-top: 2px solid #141414;
 }
 
 .nav-container {
@@ -138,7 +141,7 @@ export default {
 .nav-brand {
   font-size: 1.5em;
   font-weight: bold;
-  color: #131313;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -155,7 +158,7 @@ export default {
 
 .nav-link {
   text-decoration: none;
-  color: #007bff;
+  color: #fff;
 }
 
 .nav-link:hover {

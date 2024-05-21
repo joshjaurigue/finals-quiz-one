@@ -3,7 +3,7 @@
     <!-- Navigation Bar -->
     <nav class="nav-bar">
       <div class="nav-container">
-        <span class="nav-brand">ForumApp</span>
+        <span class="nav-brand">Forum App</span>
         <ul class="nav-links">
           <li class="nav-item">
             <router-link class="nav-link" to="/">Login</router-link>
@@ -21,7 +21,7 @@
         <h4>Enter your email and password</h4>
         <form @submit.prevent="loginUser" class="col-12">
           <div class="form-group mt-3">
-            <input type="email" class="form-control" id="email" v-model="email" placeholder="Enter email"  @input="clearErrors">
+            <input type="email" class="form-control" id="email" v-model="email" placeholder="Enter email" @input="clearErrors">
             <small class="text-danger" v-if="errors?.email">{{ errors.email[0] }}</small>
           </div>
           <div class="form-group mt-3">
@@ -43,6 +43,7 @@
 <script>
 import { BASE_URL } from '@/config';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default {
   data() {
@@ -63,12 +64,26 @@ export default {
         if (response.status === 201) {
           // Successful login, handle token storage and redirection
           localStorage.setItem('token', response.data.token);
-          this.$router.push('/home');
+          Swal.fire({
+            icon: 'success',
+            title: 'Login Successful!',
+            text: 'You will be redirected shortly.',
+            timer: 2000,
+            timerProgressBar: true,
+            showConfirmButton: false
+          });
+          setTimeout(() => {
+            this.$router.push('/home');
+          }, 2000); // Redirect after 2 seconds
         }
       } catch (error) {
         // Handle login error, show error message to the user
         this.errors = error.response.data.errors;
-       
+        Swal.fire({
+          icon: 'error',
+          title: 'Login Failed',
+          text: 'Please check your credentials and try again.',
+        });
       }
     },
     clearErrors() {
@@ -80,11 +95,11 @@ export default {
 </script>
 
 <style scoped>
-/* Navigation Bar Styles */
 .nav-bar {
-  background-color: #f8f9fa;
-  padding: 1em;
-  border-bottom: 1px solid #dee2e6;
+  background-color: #4c4d4e; /* Changed to a blue color */
+  padding: 1em 2em;
+  border-bottom: 2px solid #141414;
+  border-top: 2px solid #141414;
 }
 
 .nav-container {
@@ -94,8 +109,9 @@ export default {
 }
 
 .nav-brand {
-  font-size: 1.5em;
+  font-size: 1.75em;
   font-weight: bold;
+  color: #fff;
 }
 
 .nav-links {
@@ -111,28 +127,34 @@ export default {
 
 .nav-link {
   text-decoration: none;
-  color: #007bff;
+  color: #ffffff;
 }
 
 .nav-link:hover {
   text-decoration: underline;
 }
 
-/* Other Styles */
 .container {
-  margin-top: 5em;
+  background-color: #bfc0c0; /* Light gray background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: inset ;
 }
 
-.form-group {
-  margin-top: 1em;
+.form-control {
+  border: 1px solid #007bff; /* Blue border color */
 }
 
-.btn {
-  margin-top: 1em;
-  width: 100%;
+.form-control:focus {
+  border-color: #ffc107; /* Yellow border color on focus */
+  box-shadow: 0 0 5px rgba(255, 193, 7, 0.5); /* Yellow box shadow on focus */
 }
 
-.text-danger {
-  color: #dc3545;
+.btn-primary {
+  background-color: #128a0e; /* Green color for buttons */
+  color: #000000; /* White text color */
+}
+
+.btn-primary:hover {
+  background-color: #1128f7; /* Darker green color on hover */
 }
 </style>

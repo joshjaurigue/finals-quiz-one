@@ -1,9 +1,20 @@
 <template>
-  <div v-if="post" class="container">
-    <h1>{{ post.title }}</h1>
-    <p><strong>Author:</strong> {{ post.user ? post.user.name : 'Unknown' }}</p>
-    <p><strong>Created At:</strong> {{ formatDate(post.created_at) }}</p>
-    <p>{{ post.body }}</p>
+  <div class="container">
+    <div v-if="post" class="post-container">
+      <div class="post-header">
+        <h1 class="post-title">{{ post.title }}</h1>
+        <div class="post-meta">
+          <p class="post-author"><strong>Author:</strong> {{ post.user ? post.user.name : 'Unknown' }}</p>
+          <p class="post-date"><strong>Created At:</strong> {{ formatDate(post.created_at) }}</p>
+        </div>
+      </div>
+      <div class="post-body">
+        <p>{{ post.body }}</p>
+      </div>
+      <div class="post-footer">
+        <router-link class="nav-brand" to="/home">← Go Back to NewsFeed</router-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -53,6 +64,65 @@ export default {
 
 <style scoped>
 .container {
-  padding: 20px;
+  margin-top: 5em;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+}
+
+.post-container {
+  max-width: 800px;
+  width: 100%;
+  padding: 2em;
+  background-color: #cacaca;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+}
+
+.post-title {
+  font-size: 2.5em;
+  color: #007bff;
+  margin-bottom: 0.5em;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  color: #6c757d;
+  font-size: 0.9em;
+}
+
+.post-author,
+.post-date {
+  margin: 0;
+}
+
+.post-body {
+  font-size: 1.2em;
+  line-height: 1.6;
+  color: #343a40;
+  padding: 1em 0;
+}
+
+.post-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+.nav-brand {
+  font-size: 1.2em;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.nav-brand:hover {
+  text-decoration: underline;
 }
 </style>
