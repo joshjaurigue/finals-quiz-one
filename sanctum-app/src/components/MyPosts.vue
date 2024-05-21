@@ -1,7 +1,7 @@
 <template>
     <nav class="nav-bar">
         <div class="nav-container">
-            <span class="nav-brand">News Feed</span>
+            <router-link class="nav-brand" to="/home">NewsFeed</router-link>
             <ul class="nav-links">
                 <li class="nav-item">
                     <router-link class="nav-link" to="/my-posts">My Posts</router-link>
@@ -12,6 +12,9 @@
             </ul>
         </div>
     </nav>
+    <br>
+    <br>
+
     <router-link to="/posts/create" class="btn btn-primary">Create New Post</router-link>
 
     <div class="container">
@@ -123,17 +126,18 @@ export default {
 }
 
 .table-striped th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #00aca3;
+  color: white;
 }
 
 .nav-bar {
-    background-color: #f8f9fa;
-    padding: 1em;
-    border-bottom: 1px solid #dee2e6;
+  background-color: #4c4d4e; /* Changed to a blue color */
+  padding: 1em 2em;
+  border-bottom: 2px solid #141414;
+  border-top: 2px solid #141414;
 }
 
 .nav-container {
@@ -143,10 +147,10 @@ export default {
 }
 
 .nav-brand {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #131313;
-    text-decoration: none;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .nav-links {
@@ -160,8 +164,8 @@ export default {
 .nav-item {}
 
 .nav-link {
-    text-decoration: none;
-    color: #007bff;
+  text-decoration: none;
+  color: #ffffff;
 }
 
 .nav-link:hover {
