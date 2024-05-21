@@ -124,9 +124,9 @@ export default {
 }
 
 .nav-bar {
-  background-color: #33f6fa;
-  color: rgb(15, 0, 0);
-  padding: 10px 0;
+  background-color: #f8f9fa;
+  padding: 1em;
+  border-bottom: 1px solid #dee2e6;
 }
 
 .nav-container {
@@ -136,24 +136,24 @@ export default {
 }
 
 .nav-brand {
-  font-size: 1.5rem;
-  margin-left: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 .nav-links {
   list-style: none;
-  margin-right: 20px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1em;
 }
 
 .nav-item {
-  display: inline-block;
-  margin-left: 20px;
 }
 
 .nav-link {
-  color: rgb(218, 36, 36);
   text-decoration: none;
-  font-weight: bold;
+  color: #007bff;
 }
 
 .nav-link:hover {
