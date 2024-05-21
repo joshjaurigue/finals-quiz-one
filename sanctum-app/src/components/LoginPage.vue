@@ -111,7 +111,6 @@ export default {
 .nav-brand {
   font-size: 1.75em;
   font-weight: bold;
-  color: #fff;
 }
 
 .nav-links {
