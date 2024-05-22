@@ -105,14 +105,23 @@ class PostController extends Controller
     {
         if ($post = Post::find($id)) {
             $post->delete();
-            
+
             return response()->json(['message' => 'Post deleted successfully'], 200);
         }
 
         return response()->json(['message' => 'Post not found'], 404);
     }
 
-    //    public function edit($id) {
+    public function edit(Request $request, $id)
+    {
+        $post = Post::findOrFail($id);
 
-    //    }
+        if ($post->user_id !== Auth::id()) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        $post->update($request->only('title', 'body'));
+
+        return response()->json($post);
+    }
 }
