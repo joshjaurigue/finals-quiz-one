@@ -41,7 +41,7 @@ export default {
       }
 
       const postId = this.$route.params.id;
-      axios.get(`${BASE_URL}/posts/${postId}`, {
+      axios.get(`${BASE_URL}/showPost/${postId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
