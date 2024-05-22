@@ -32,8 +32,8 @@
 
 <script>
 import { BASE_URL } from '@/config';
-
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default {
     data() {
@@ -74,10 +74,23 @@ export default {
                     }
                 });
                 console.log('Post updated:', response.data);
-                // Optionally, you can navigate to a different page or show a success message here
+                // Show success message
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Updated!',
+                    text: 'The post has been updated successfully.',
+                }).then(() => {
+                    // Optionally, you can navigate to a different page or refresh the data
+                    this.$router.push('/my-posts');
+                });
             } catch (error) {
                 console.error('Error updating post:', error);
                 // Handle errors here, such as showing an error message to the user
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'There was an error updating the post. Please try again.',
+                });
             }
         }
     }
