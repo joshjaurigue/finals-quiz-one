@@ -105,8 +105,8 @@ class PostController extends Controller
     {
         if ($post = Post::find($id)) {
             $post->delete();
-            $allPosts = Post::all();
-            return response()->json(['message' => 'Post deleted successfully', 'posts' => $allPosts], 200);
+            
+            return response()->json(['message' => 'Post deleted successfully'], 200);
         }
 
         return response()->json(['message' => 'Post not found'], 404);
