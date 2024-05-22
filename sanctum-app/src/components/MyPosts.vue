@@ -47,6 +47,7 @@
 <script>
 import { BASE_URL } from '@/config';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default {
 
@@ -96,9 +97,19 @@ export default {
                 .then(response => {
                     console.log('Post deleted successfully:', response.data);
                     this.fetchMyPosts();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Deleted!',
+                        text: 'The post has been deleted successfully.',
+                    });
                 })
                 .catch(error => {
                     console.error('There was an error deleting the post:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'There was an error deleting the post. Please try again.',
+                    });
                 });
         },
     }
