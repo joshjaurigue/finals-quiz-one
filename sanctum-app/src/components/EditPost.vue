@@ -59,7 +59,6 @@ export default {
                 this.body = post.body;
             } catch (error) {
                 console.error('Error fetching post data:', error);
-                // Handle errors here, such as showing an error message to the user
             }
         },
         async updatePost() {
@@ -73,19 +72,18 @@ export default {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
                 });
-                console.log('Post updated:', response.data);
                 // Show success message
+                console.log(response.data);
                 Swal.fire({
                     icon: 'success',
                     title: 'Updated!',
                     text: 'The post has been updated successfully.',
                 }).then(() => {
-                    // Optionally, you can navigate to a different page or refresh the data
+                    // Automatically pushes to another route
                     this.$router.push('/my-posts');
                 });
             } catch (error) {
-                console.error('Error updating post:', error);
-                // Handle errors here, such as showing an error message to the user
+                // Error message for updating a post
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',

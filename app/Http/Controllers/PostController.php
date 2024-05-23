@@ -44,10 +44,12 @@ class PostController extends Controller
             $post = new Post();
             $post->title = $request->input('title');
             $post->body = $request->input('body');
-            $post->user_id = Auth::id(); // Set the user_id to the authenticated user's ID
+            $post->user_id = Auth::id(); // Set the user_id to the authenticated user's ID or logged in user's ID
 
+            // post is finally saved
             $post->save();
 
+            // JSON response
             return response()->json([
                 'post' => $post,
                 'message' => 'Post created successfully.',
@@ -69,6 +71,7 @@ class PostController extends Controller
     {
         $post = Post::with('user')->find($id);
 
+        // Checks if posts exists
         if (!$post) {
             return response()->json([
                 'message' => 'Post not found.',
@@ -76,6 +79,7 @@ class PostController extends Controller
             ], 404);
         }
 
+        // JSON response
         return response()->json([
             'post' => $post,
             'message' => 'Post fetched successfully.',
@@ -101,21 +105,30 @@ class PostController extends Controller
         ], 200);
     }
 
+     /**
+     * Delete user-specific posts.
+     */
     public function delete($id)
-    {
+    {   
+        // Checks if posts exists
         if ($post = Post::find($id)) {
             $post->delete();
-
+            
+            // JSON response
             return response()->json(['message' => 'Post deleted successfully'], 200);
         }
-
+        
+        // JSON response
         return response()->json(['message' => 'Post not found'], 404);
     }
 
+     /**
+     * Edit user-specific posts.
+     */
     public function edit(Request $request, $id)
     {
         $post = Post::findOrFail($id);
-
+        // Checks if logged in user is authorized to edit
         if ($post->user_id !== Auth::id()) {
             return response()->json(['error' => 'Unauthorized'], 403);
         }

@@ -49,7 +49,7 @@ export default {
     async submitForm() {
       const token = localStorage.getItem('token');
       if (!token) {
-        // Handle case where token is not available
+        // Checks if login token exists or if user has logged in.
         Swal.fire({
           icon: 'error',
           title: 'Authentication Error',
@@ -58,6 +58,7 @@ export default {
         return;
       }
       try {
+        // collects the title and body data
         const response = await axios.post(`${BASE_URL}/posts`, {
           title: this.title,
           body: this.body
@@ -67,6 +68,8 @@ export default {
           }
         });
         
+        // Success message
+        console.log(response.data);
         Swal.fire({
           icon: 'success',
           title: 'Post Created Successfully!',
@@ -75,10 +78,8 @@ export default {
           timerProgressBar: true,
           showConfirmButton: false
         });
-        
-        console.log('Post created:', response.data);
-        
-        // Redirect to the posts section after a short delay
+      
+        // Redirect to the posts section after posting
         setTimeout(() => {
           this.$router.push({ name: 'home' });
         }, 2000);

@@ -36,7 +36,7 @@ export default {
     fetchPost() {
       const token = localStorage.getItem('token');
       if (!token) {
-        // Handle case where token is not available
+        // Checks if user has logged in, otherwise, it will be returned to login page
         return;
       }
 
@@ -47,13 +47,14 @@ export default {
         }
       })
         .then(response => {
-          this.post = response.data.post; // Access the correct key in the response
-          console.log(response.data.post);
+           // getting post details from API response
+          this.post = response.data.post; 
         })
         .catch(error => {
           console.error("There was an error fetching the post:", error);
         });
     },
+    // function for formatting dates
     formatDate(date) {
       const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
       return new Date(date).toLocaleDateString('en-US', options);

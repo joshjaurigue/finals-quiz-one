@@ -5,8 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AuthController;
 
+// Public routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
+// Protected routes 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/posts', [PostController::class, 'index']);
     Route::get('/showPost/{id}', [PostController::class, 'show']);

@@ -1,5 +1,5 @@
 <template>
-
+    <!--Nav bar-->
     <nav class="nav-bar">
       <div class="nav-container">
         <router-link class="nav-brand" to="/home">NewsFeed</router-link>
@@ -18,6 +18,8 @@
     <router-link to="/posts/create" class="btn btn-primary">Create New Post</router-link>
     <br>
     <br>
+
+    <!--Posts Table-->
     <table class="table-striped">
       <thead>
         <tr>
@@ -60,7 +62,7 @@ export default {
     fetchPosts() {
       const token = localStorage.getItem('token');
       if (!token) {
-        // Handle case where token is not available
+        // Checks if user has logged in, otherwise, it will be returned to login page
         return;
       }
 
@@ -70,34 +72,20 @@ export default {
         }
       })
       .then(response => {
-        console.log('API Response:', response.data.posts);
+        // getting posts from API response
         this.posts = response.data.posts;
-        console.log('Assigned Posts:', this.posts);
       })
       .catch(error => {
         console.error("There was an error fetching the posts:", error);
       });
     },
+
+    // function for formatting dates
     formatDate(date) {
       const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
       return new Date(date).toLocaleDateString('en-US', options);
     },
-    // deletePost(postId) {
-    //   if (confirm('Are you sure you want to delete this post?')) {
-    //     const token = localStorage.getItem('token');
-    //     axios.delete(`${BASE_URL}/posts/${postId}`, {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`
-    //       }
-    //     })
-    //     .then(response => {
-    //       this.posts = this.posts.filter(post => post.id !== postId);
-    //     })
-    //     .catch(error => {
-    //       console.error("There was an error deleting the post:", error);
-    //     });
-    //   }
-    // },
+  
   },
 };
 </script>

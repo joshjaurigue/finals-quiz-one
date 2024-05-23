@@ -1,4 +1,5 @@
 <template>
+    <!--Nav bar-->
     <nav class="nav-bar">
         <div class="nav-container">
             <router-link class="nav-brand" to="/home">NewsFeed</router-link>
@@ -17,6 +18,7 @@
 
     <router-link to="/posts/create" class="btn btn-primary">Create New Post</router-link>
 
+    <!--My Posts Table-->
     <div class="container">
         <h1>My Posts</h1>
         <table class="table-striped">
@@ -32,6 +34,7 @@
                     <td>{{ post.title }}</td>
                     <td>{{ formatDate(post.created_at) }}</td>
                     <td>
+                        <!-- Links for viewing or editing my posts -->
                         <router-link :to="{ name: 'show', params: { id: post.id } }"
                             class="btn btn-primary mr-2">View</router-link>
                         <router-link :to="{ name: 'edit', params: { id: post.id } }"
@@ -64,7 +67,7 @@ export default {
         fetchMyPosts() {
             const token = localStorage.getItem('token');
             if (!token) {
-                // Handle case where token is not available
+             // Checks if user has logged in, otherwise, it will be returned to login page
                 return;
             }
             axios.get(`${BASE_URL}/my-posts`, {
@@ -73,16 +76,21 @@ export default {
                 }
             })
                 .then(response => {
+                    // getting my posts from API response
                     this.myPosts = response.data.posts;
                 })
                 .catch(error => {
                     console.error("Error fetching user-specific posts:", error);
                 });
         },
+        
+        // function for formatting dates
         formatDate(date) {
             const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
             return new Date(date).toLocaleDateString('en-US', options);
         },
+        
+        // function for deleting posts
         deletePost(postId) {
             const token = localStorage.getItem('token');
             if (!token) {
@@ -95,7 +103,7 @@ export default {
                 }
             })
                 .then(response => {
-                    console.log('Post deleted successfully:', response.data);
+                    console.log(response.data);
                     this.fetchMyPosts();
                     Swal.fire({
                         icon: 'success',
