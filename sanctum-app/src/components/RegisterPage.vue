@@ -1,4 +1,5 @@
 <template>
+  <!--Nav bar-->
   <div>
     <nav class="nav-bar">
       <div class="nav-container">
@@ -14,6 +15,8 @@
       </div>
     </nav>
   </div>
+
+  <!--Registration Form-->
   <div class="container mt-5 w-25">
     <h4>Registration Form</h4>
     <form @submit.prevent="registerUser">

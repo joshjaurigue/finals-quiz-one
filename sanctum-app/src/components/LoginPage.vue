@@ -74,7 +74,7 @@ export default {
           });
           setTimeout(() => {
             this.$router.push('/home');
-          }, 2000); // Redirect after 2 seconds
+          }, 2000);
         }
       } catch (error) {
         // Handle login error, show error message to the user
