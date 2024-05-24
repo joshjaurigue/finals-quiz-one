@@ -18,6 +18,7 @@
 
   <!--Registration Form-->
   <div class="container mt-5 w-25">
+    <br>
     <h4>Registration Form</h4>
     <form @submit.prevent="registerUser">
       <div class="form-group mb-3">
@@ -29,14 +30,24 @@
         <small class="text-danger" v-if="errors.email">{{ errors.email[0] }}</small>
       </div>
       <div class="form-group mb-3">
-        <input type="password" class="form-control" id="password" v-model="password" @input="clearErrors('password')" placeholder="Password">
+        <input :type="passwordVisible ? 'text' : 'password'" class="form-control" id="password" v-model="password" @input="clearErrors('password')" placeholder="Password">
         <small class="text-danger" v-if="errors.password">{{ errors.password[0] }}</small>
       </div>
       <div class="form-group mb-3">
-        <input type="password" class="form-control" id="confirm" v-model="confirm" placeholder="Confirm Password">
+        <input :type="confirmPasswordVisible ? 'text' : 'password'" class="form-control" id="confirm" v-model="confirm" placeholder="Confirm Password">
         <small class="text-danger" v-if="errors.password_confirmation">{{ errors.password_confirmation[0] }}</small>
       </div>
+      <div class="form-group mb-3">
+        <input type="checkbox" id="showPassword" v-model="passwordVisible">
+        <label for="showPassword">Show Password</label>
+      </div>
+      <div class="form-group mb-3">
+        <input type="checkbox" id="showConfirmPassword" v-model="confirmPasswordVisible">
+        <label for="showConfirmPassword">Show Confirm Password</label>
+      </div>
       <button type="submit" class="btn btn-primary mt-3 w-100">Register</button>
+      <br>
+      <br>
     </form>
   </div>
 </template>
@@ -53,6 +64,8 @@ export default {
       email: '',
       password: '',
       confirm: '',
+      passwordVisible: false, 
+      confirmPasswordVisible: false,
       errors: {}
     };
   },

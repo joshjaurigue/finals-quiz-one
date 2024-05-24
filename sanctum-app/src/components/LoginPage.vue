@@ -17,6 +17,8 @@
     
     <!-- Login Form -->
     <div class="container mt-5 col-3">
+      <br>
+      <br>
       <div class="row">
         <h4>Enter your email and password</h4>
         <form @submit.prevent="loginUser" class="col-12">
@@ -25,8 +27,12 @@
             <small class="text-danger" v-if="errors?.email">{{ errors.email[0] }}</small>
           </div>
           <div class="form-group mt-3">
-            <input type="password" class="form-control" id="password" v-model="password" placeholder="Password" @input="clearErrors">
+            <input :type="passwordVisible ? 'text' : 'password'" class="form-control" id="password" v-model="password" placeholder="Password" @input="clearErrors">
             <small class="text-danger" v-if="errors?.password">{{ errors.password[0] }}</small>
+          </div>
+          <div class="form-group mt-3">
+            <input type="checkbox" id="showPassword" v-model="passwordVisible">
+            <label for="showPassword">Show Password</label>
           </div>
           <button type="submit" class="btn btn-primary mt-3 w-100">Login</button>
         </form>
@@ -36,6 +42,7 @@
             <p class="mt-3 text-left">Don't have an account? <router-link to="/register">Register here!</router-link></p>
         </div>
       </div>
+      <br>
     </div>
   </div>
 </template>
@@ -50,7 +57,8 @@ export default {
     return {
       email: '',
       password: '',
-      errors: null
+      errors: null,
+      passwordVisible: false, 
     };
   },
   methods: {
